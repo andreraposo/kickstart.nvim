@@ -3,7 +3,7 @@ return {
   keys = {
     { '<leader>u', vim.cmd.UndotreeToggle, 'UndoTree Toggle' },
   },
-  config = {
+  opts = {
     require('which-key').register {
       ['<leader>u'] = { name = '[U]ndo', _ = 'which_key_ignore' },
     },
