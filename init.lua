@@ -196,13 +196,12 @@ require('lazy').setup({
 
       -- Document existing key chains
       require('which-key').add {
-        { '<leader>c', name = '[C]ode', desc = 'which_key_ignore' },
-        { '<leader>d', name = '[D]ocument', desc = 'which_key_ignore' },
-        { '<leader>s', name = '[S]earch', desc = 'which_key_ignore' },
-        { '<leader>w', name = '[W]orkspace', desc = 'which_key_ignore' },
-        { '<leader>t', name = '[T]oggle', desc = 'which_key_ignore' },
-        { '<leader>h', name = 'Git [H]unk', desc = 'which_key_ignore' },
-        { '<leader>r', name = '[R]un', desc = 'which_key_ignore' },
+        { '<leader>c', desc = '[C]ode' },
+        { '<leader>s', desc = '[S]earch' },
+        { '<leader>w', desc = '[W]orkspace' },
+        { '<leader>t', desc = '[T]oggle' },
+        { '<leader>h', desc = 'Git [H]unk' },
+        { '<leader>r', desc = '[R]un' },
       }
       -- visual mode
       require('which-key').add({
@@ -522,6 +521,8 @@ require('lazy').setup({
         },
         -- Zig
         -- zls = {},
+        -- JS e TS
+        biome = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -538,9 +539,11 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'black', -- Used to format python code
-        'sonarlint-language-server', -- Helpful linting and diagnostics
+        'debugpy', -- Python Debugger
         'css-lsp', -- css
         'emmet-language-server', -- emmet
+        'sonarlint-language-server', -- Helpful linting and diagnostics
+        'markdownlint',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -726,14 +729,33 @@ require('lazy').setup({
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+    -- init = function()
+    --   -- Load the colorscheme here.
+    --   -- Like many other themes, this one has different styles, and you could load
+    --   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+    --   vim.cmd.colorscheme 'tokyonight-night'
+    --
+    --   -- You can configure highlights by doing something like:
+    --   vim.cmd.hi 'Comment gui=none'
+    -- end,
+  },
+  {
+    'Mofiqul/adwaita.nvim',
+    lazy = false,
+    priority = 1000,
 
-      -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+    -- configure and set on startup
+    config = function()
+      vim.cmd 'colorscheme adwaita'
+    end,
+  },
+  {
+    'uloco/bluloco.nvim',
+    lazy = false,
+    priority = 1000,
+    dependencies = { 'rktjmp/lush.nvim' },
+    config = function()
+      -- vim.cmd 'colorscheme bluloco'
     end,
   },
 
@@ -781,7 +803,20 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'lua',
+        'luadoc',
+        'markdown',
+        'vim',
+        'vimdoc',
+        'javascript',
+        'typescript',
+        'jsdoc',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
