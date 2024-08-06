@@ -1,6 +1,11 @@
 return {
   'vim-test/vim-test',
-  opts = {},
+  lazy = false,
+  config = function()
+    require('which-key').add {
+      { '<leader>r', name = '[R]un tests', desc = 'which_key_ignore' },
+    }
+  end,
   keys = {
     {
       '<leader>rt',
