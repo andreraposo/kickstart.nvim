@@ -5,7 +5,6 @@
 ---@module 'lazy'
 ---@type LazySpec
 return {
-  {
     'lewis6991/gitsigns.nvim',
     opts = {
       current_line_blame = true,
@@ -81,5 +80,5 @@ return {
       -- Text object
       map({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
     end,
-  },
-}
+  }
+  }

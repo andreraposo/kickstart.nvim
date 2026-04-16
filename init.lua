@@ -470,7 +470,6 @@ require('lazy').setup({
           -- Rename the variable under your cursor.
           --  Most Language Servers support renaming across files, etc.
           map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
->>>>>>> upstream/master
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
@@ -583,7 +582,6 @@ require('lazy').setup({
               },
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
               diagnostics = { disable = { 'missing-fields' } },
-            },
               workspace = {
                 checkThirdParty = false,
                 -- NOTE: this is a lot slower and will cause issues when working on your own configuration.
@@ -599,8 +597,6 @@ require('lazy').setup({
             Lua = {},
           },
         },
-        -- Zig
-        -- zls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -672,16 +668,16 @@ require('lazy').setup({
         --
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is fond.
-        javascript = { 'prettierd', 'prettier', stop_after_first = true },
-        javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
-        typescript = { 'prettierd', 'prettier', stop_after_first = true },
-        typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
-        css = { 'prettierd', 'prettier', stop_after_first = true },
-        scss = { 'prettierd', 'prettier', stop_after_first = true },
-        json = { 'prettierd', 'prettier', stop_after_first = true },
-        graphql = { 'prettierd', 'prettier', stop_after_first = true },
-        markdown = { 'prettierd', 'prettier', stop_after_first = true },
-        yaml = { 'prettierd', 'prettier', stop_after_first = true },
+        javascript = { 'prettier', stop_after_first = true },
+        javascriptreact = {  'prettier', stop_after_first = true },
+        typescript = {  'prettier', stop_after_first = true },
+        typescriptreact = {  'prettier', stop_after_first = true },
+        css = { 'prettier', stop_after_first = true },
+        scss = { 'prettier', stop_after_first = true },
+        json = { 'prettier', stop_after_first = true },
+        graphql = { 'prettier', stop_after_first = true },
+        markdown = { 'prettier', stop_after_first = true },
+        yaml = { 'prettier', stop_after_first = true },
       },
     },
   },
@@ -762,12 +758,6 @@ require('lazy').setup({
         -- Adjusts spacing to ensure icons are aligned
         nerd_font_variant = 'mono',
       },
-
-          -- If you prefer more traditional completion keymaps,
-          -- you can uncomment the following lines
-          ['<CR>'] = cmp.mapping.confirm { select = true },
-          ['<Tab>'] = cmp.mapping.select_next_item(),
-          ['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
       sources = {
         default = { 'lsp', 'path', 'snippets' },
@@ -885,7 +875,7 @@ require('lazy').setup({
         'javascript',
         'typescript',
         'jsdoc',
- }
+      }
       require('nvim-treesitter').install(parsers)
 
       ---@param buf integer
@@ -984,3 +974,4 @@ vim.g.python_host_prog = '$HOME/.asdf/shims/python'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+vim.env.PATH = "/opt/homebrew/bin:" .. vim.env.PATH
